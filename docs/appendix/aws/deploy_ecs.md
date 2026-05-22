@@ -22,17 +22,22 @@ aws ecr get-login-password --region <region> | sudo docker login --username AWS 
 
 Ahora, para cada microservicio que queramos almacenar en ECR ejecutaremos los siguientes comandos.
 
-1. Crear la imagen de docker.
+1. Crear el repositorio de ECR
+```bash
+aws ecr create-repository repository-name
+```
+
+2. Crear la imagen de docker.
 ```bash
 sudo docker build -t image:tag .
 ``` 
 
-2. Etiquetar la imagen para poder enviarla al repositorio
+1. Etiquetar la imagen para poder enviarla al repositorio
 ```bash
 sudo docker tag image:tag <aws_account_id>.dkr.ecr.<region>.amazonaws.com/remote-repository:tag
 ``` 
 
-3. Enviar la imagen al repositorio de AWS.
+1. Enviar la imagen al repositorio de AWS.
 ```bash
 sudo docker push <aws_account_id>.dkr.ecr.<region>.amazonaws.com/remote-repository:tag
 ```
