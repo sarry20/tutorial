@@ -2,9 +2,9 @@
 Para desplegar la aplicacion haremos uso de los servicios de AWS Elastic Cluster Registry (AWS ECR) y Elastic Cluster Service (AWS ECS).
 
 ## Que es Elastic Cluster Registry
-Amazon Elastic Container Registry (Amazon ECR) es un registro de contenedores completamente administrado que ofrece alojamiento de alto rendimiento, lo que permite utilizar imágenes de aplicaciones y artefactos de forma confiable en cualquier lugar.
+Amazon Elastic Container Registry (Amazon ECR) es un registro de contenedores completamente administrado que ofrece alojamiento de alto rendimiento, lo que permite utilizar imágenes (docker) de aplicaciones y artefactos con la confianza de que funcionarán en cualquier lugar.
 
-ECR nos permite tanto hacer repositorios privados como publicos para poder almacenar las imagenes, en este caso haremos uso de los repositorios privados para almacenar las imagenes de nuestros micro servicios
+ECR nos permite tanto hacer repositorios privados como publicos para poder almacenar las imagenes, en este caso haremos uso de los repositorios privados para almacenar las imagenes de nuestros micro servicios. Este aspecto permite que las empresas puedan tener su propia lógica en AWS sin exponerla
 
 ## Que es Elastic Cluster Service
 Amazon ECS es un servicio de orquestación de contenedores completamente administrado que ayuda a implementar, administrar y escalar fácilmente las aplicaciones en contenedores. Se integra profundamente al resto de la plataforma de AWS para proporcionar una solución segura y fácil de utilizar que ejecuta cargas de trabajo con contenedores en la nube.
@@ -177,7 +177,7 @@ aws logs create-log-group --log-group-name /ecs/docker-deploy-<SERVICE> --region
       "memory": 4096,
       "portMappings": [
         {
-          "containerPort": <SERVICE_PORT>,
+          "containerPort": "<SERVICE_PORT>",
           "protocol": "tcp"
         }
       ],
@@ -245,7 +245,7 @@ aws ecs register-task-definition --cli-input-json file://task-ecs.json
     --load-balancers "targetGroupArn=<GATEWAY_TG_ARN>,containerName=Main,containerPort=8080"
     ```
 
-## Demostracion
+## Demostración
 
 Una vez realizados todos los pasos podremos acceder tanto al frontend como al gateway como al eureka si asi lo hemos configurado
 

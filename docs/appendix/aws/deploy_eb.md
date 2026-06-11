@@ -2,13 +2,13 @@
 
 
 ## Que es Elastic Beanstalk
-Para desplegar la aplicacion en AWS, utilizaremos el servicio AWS Elastic Beanstalk (AWS EB), permite migrar, implementar y escalar fácilmente aplicaciones full stack. Gestiona las operaciones de infraestructura y aplicaciones, lo que permite a los desarrolladores centrarse en la lógica empresarial.
+Para desplegar la aplicacion en AWS, utilizaremos el servicio AWS Elastic Beanstalk (AWS EB), permite migrar, implementar y escalar fácilmente aplicaciones full stack. Gestiona las operaciones de infraestructura y aplicaciones, lo que nos ayudará a centrarnos en la lógica de negocio.
 
-Gracias a EB se podrá desplegar facilmente todas nuestras aplicaciones y con la ayuda de docker y docker compose, no habrá que preocuparse de nada por el cambio del entorno.
+Gracias a EB se podremos desplegar fácilmente todas nuestras aplicaciones haciendo uso de `docker` y `docker compose`, y así nos olvidamos de cualquier cambio de entorno.
 
 ## Pre-requisitos
 En este tutorial, partiremos de la aplicacion con [micro servicios](../springcloud/intro.md) y [dockerizada](../docker/installdocker.md).
-Tambien, al igual que [AWS CLI](./cli.md) instalaremos todo en WSL.
+Igual que vimos en [AWS CLI](./cli.md), instalaremos todo usando WSL.
 
 ## Instalacion EB CLI
 Para poder desplegar la aplicacion, primero necesitaremos la CLI de Elastic Beanstalk, para ello necesitamos unos pasos previos.
