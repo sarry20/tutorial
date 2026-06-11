@@ -20,6 +20,8 @@ El primer paso de todos es autenticar nuestro docker para que pueda acceder a lo
 aws ecr get-login-password --region <region> | sudo docker login --username AWS --password-stdin <aws_account_id>.dkr.ecr.<region>.amazonaws.com
 ```
 
+Donde `<region>` es la region que tengamos configurada, y `<aws_account_id>` lo deberemos tener configurado de nuestros credenciales de AWS
+
 Ahora, para cada microservicio que queramos almacenar en ECR ejecutaremos los siguientes comandos.
 
 1. Crear el repositorio de ECR
@@ -55,10 +57,14 @@ Antes de crear los servicios necestiamos crear los ALB y el grupo de seguridad, 
 aws ec2 create-security-group --group-name ecs-microservices-sg --description "Shared SG for ECS microservices communication" --vpc-id <VPC_ID> --region <REGION>
 ```
 
+- `VPC` es el Virtual Prive Cloud. vendría a ser nuestra área de red en la nube con nuestros permisos, configuración específica y más detalles que podamos configurar
+
 2. Autorizar todas las peticiones a cualquier puerto entre los ECS del grupo de seguridad
 ```bash
 aws ec2 authorize-security-group-ingress --group-id <SG_SHARED> --protocol tcp --port 0-65535 --source-group <SG_SHARED> --region <REGION>
 ```
+
+- `SG_SHARED` será el grupo de seguridad que configuremos
 
 3. Exponer a internter el puerto del frontend para poder visitar la pagina
 ```bash
@@ -110,6 +116,8 @@ aws ec2 authorize-security-group-ingress --group-id <SG_ALB> --protocol tcp --po
 ```bash
 aws ec2 authorize-security-group-ingress --group-id <SG_SHARED> --protocol tcp --port 8080 --source-group <SG_ALB> --region <REGION>
 ```
+
+- `SG_ALB` será nuestro Application Load Balancer
 
 4. Crear el load balancer
 ```bash
